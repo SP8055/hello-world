@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,15 +85,27 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form>
-            <input type="text" class="input-field" placeholder="Username" required>
-            <input type="password" class="input-field" placeholder="Password" required>
+        <form action="login.jsp" method="post">
+            <input type="text" name="username" class="input-field" placeholder="Username" required>
+            <input type="password" name="password" class="input-field" placeholder="Password" required>
             <button type="submit" class="login-button">Login</button>
         </form>
+        
+        <% 
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            if (username != null && password != null) {
+                // Here you can validate the credentials, for example:
+                // if (username.equals("admin") && password.equals("password")) { ... }
+                
+                out.println("<p>Entered Username: " + username + "</p>");
+                out.println("<p>Entered Password: " + password + "</p>");
+            }
+        %>
+        
         <div class="login-footer">
             <p>Don't have an account? <a href="#">Sign up</a></p>
         </div>
     </div>
 </body>
 </html>
-
